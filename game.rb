@@ -1,9 +1,17 @@
 require "./lib/rpg"
 
 class GameWindow < Gosu::Window
+  attr_accessor :rpg
+
   def initialize
-   super(1024, 576, false)
-   self.caption = 'Hello World!'
+    super(1024, 576, false)
+    self.caption = 'Hello World!'
+
+    @rpg = RPG.new(self)
+  end
+
+  def draw
+    @rpg.world.draw
   end
 
   def button_down(id)
