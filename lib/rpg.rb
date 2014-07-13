@@ -24,6 +24,10 @@ class RPG
     @world.draw
     @player.draw
   end
+
+  def update
+    @player.update
+  end
 end
 
 require "./lib/pc"

@@ -14,6 +14,10 @@ class GameWindow < Gosu::Window
     @rpg.draw
   end
 
+  def update
+    @rpg.update
+  end
+
   def button_down(id)
     close if id == Gosu::KbEscape
   end
