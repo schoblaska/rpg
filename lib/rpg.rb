@@ -18,6 +18,10 @@ class RPG
   def cols
     window.width / 16
   end
+
+  def draw
+    @world.draw
+  end
 end
 
 require "./lib/world"

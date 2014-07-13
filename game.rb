@@ -11,7 +11,7 @@ class GameWindow < Gosu::Window
   end
 
   def draw
-    @rpg.world.draw
+    @rpg.draw
   end
 
   def button_down(id)
