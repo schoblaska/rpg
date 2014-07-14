@@ -22,7 +22,7 @@ class RPG::PC
   end
 
   def can_move?
-    (Time.now.to_f - @moved.to_f) * 1000.0 > 50
+    (Time.now.to_f - @moved.to_f) * 1000.0 > 75
   end
 
   def move(direction)
