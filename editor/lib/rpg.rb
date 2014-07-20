@@ -22,5 +22,7 @@ class RPG
   end
 end
 
+require "./lib/core_ext/numeric"
+
 require "./lib/pc"
 require "./lib/world"

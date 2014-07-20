@@ -4,7 +4,7 @@ class GameWindow < Gosu::Window
   attr_accessor :rpg
 
   def initialize
-    super(1024, 576, false)
+    super(16 * 64, 16 * 36, false)
     self.caption = "Editor"
 
     @rpg = RPG.new(self)
@@ -23,19 +23,31 @@ class GameWindow < Gosu::Window
   end
 
   def top
-    rpg.player.y - rpg.window.height / 16 / 2
+    min_top = 0
+    max_top = rpg.world.rows - height / 16
+
+    (rpg.player.y - height / 16 / 2).restrict(min_top, max_top)
   end
 
   def bottom
-    rpg.player.y + rpg.window.height / 16 / 2
+    min_bottom = height / 16
+    max_bottom = rpg.world.rows - 1
+
+    (rpg.player.y + height / 16 / 2).restrict(min_bottom, max_bottom)
   end
 
   def left
-    rpg.player.x - rpg.window.width / 16 / 2
+    min_left = 0
+    max_left = rpg.world.cols - width / 16
+
+    (rpg.player.x - width / 16 / 2).restrict(min_left, max_left)
   end
 
   def right
-    rpg.player.x + rpg.window.width / 16 / 2
+    min_right = width / 16
+    max_right = rpg.world.cols - 1
+
+    (rpg.player.x + width / 16 / 2).restrict(min_right, max_right)
   end
 end
 
