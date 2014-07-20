@@ -1,25 +1,24 @@
 class RPG::PC
-  attr_accessor :rpg, :x, :y, :moved
+  attr_accessor :x, :y
 
-  def initialize(rpg)
-    @rpg = rpg
+  def initialize
     @x = RPG::World::COLS / 2
     @y = RPG::World::ROWS / 2
     @moved = Time.now
   end
 
-  def draw
-    draw_x = x - rpg.window.left
-    draw_y = y - rpg.window.top
-    rpg.tiles[:misc][157].draw(draw_x * 16, draw_y * 16, 3, 1, 1, 0xffff0000)
+  def draw(window)
+    draw_x = @x - window.left
+    draw_y = @y - window.top
+    TILES[:misc][157].draw(draw_x * 16, draw_y * 16, 3, 1, 1, 0xffff0000)
   end
 
-  def update
+  def update(window)
     if can_move?
-      move(:left)  if @rpg.window.button_down?(Gosu::Button::KbLeft)
-      move(:right) if @rpg.window.button_down?(Gosu::Button::KbRight)
-      move(:up)    if @rpg.window.button_down?(Gosu::Button::KbUp)
-      move(:down)  if @rpg.window.button_down?(Gosu::Button::KbDown)
+      move(:left)  if window.button_down?(Gosu::Button::KbLeft)
+      move(:right) if window.button_down?(Gosu::Button::KbRight)
+      move(:up)    if window.button_down?(Gosu::Button::KbUp)
+      move(:down)  if window.button_down?(Gosu::Button::KbDown)
     end
   end
 

@@ -14,16 +14,16 @@ class RPG
     }
 
     @world = RPG::World.new
-    @player = RPG::PC.new(self)
+    @player = RPG::PC.new
   end
 
   def draw
     world.draw(window)
-    player.draw
+    player.draw(window)
   end
 
   def update
-    player.update
+    player.update(window)
   end
 end
 
