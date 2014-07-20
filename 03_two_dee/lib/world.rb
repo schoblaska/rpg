@@ -7,18 +7,13 @@ class RPG::World
 
     (0..cols).each do |x|
       (0..rows).each do |y|
-        blocks[x][y] = [RPG::WorldBlock.new(self, x, y, 1, [:grass, :grass, :grass, :water, :mud].sample)]
+        blocks[x][y] = RPG::WorldBlock.new(self, x, y, [:grass, :grass, :grass, :water, :mud].sample)
       end
     end
   end
 
-  def add_block(x, y, material)
-    z = blocks[x][y].last.z + 1
-    blocks[x][y] << RPG::WorldBlock.new(self, x, y, z, material)
-  end
-
-  def remove_block(x, y)
-    blocks[x][y] = blocks[x][y][0..blocks[x][y].size-2]
+  def set_block(x, y, material)
+    blocks[x][y] = RPG::WorldBlock.new(self, x, y, material)
   end
 
   def cols
@@ -32,7 +27,7 @@ class RPG::World
   def draw
     (rpg.window.left..rpg.window.right).each_with_index do |x, xi|
       (rpg.window.top..rpg.window.bottom).each_with_index do |y, yi|
-        blocks[x][y].last.draw(xi * 16, yi * 16)
+        blocks[x][y].draw(xi * 16, yi * 16)
       end
     end
   end

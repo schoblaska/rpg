@@ -14,10 +14,6 @@ class RPG::PC
     rpg.tiles[:misc][157].draw(draw_x * 16, draw_y * 16, 3, 1, 1, 0xffff0000)
   end
 
-  def z
-    rpg.world.blocks[x][y].last.z + 1
-  end
-
   def update
     if can_move?
       move(:left)  if @rpg.window.button_down?(Gosu::Button::KbLeft)

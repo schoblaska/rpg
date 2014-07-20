@@ -22,10 +22,9 @@ class GameWindow < Gosu::Window
 
   def button_down(id)
     close if id == Gosu::KbEscape
-    rpg.world.add_block(mouse_tile_x, mouse_tile_y, :water) if id == Gosu::KbW
-    rpg.world.add_block(mouse_tile_x, mouse_tile_y, :grass) if id == Gosu::KbG
-    rpg.world.add_block(mouse_tile_x, mouse_tile_y, :mud) if id == Gosu::KbM
-    rpg.world.remove_block(mouse_tile_x, mouse_tile_y) if id == Gosu::KbX
+    rpg.world.set_block(mouse_tile_x, mouse_tile_y, :water) if id == Gosu::KbW
+    rpg.world.set_block(mouse_tile_x, mouse_tile_y, :grass) if id == Gosu::KbG
+    rpg.world.set_block(mouse_tile_x, mouse_tile_y, :mud) if id == Gosu::KbM
   end
 
   def mouse_tile_x
