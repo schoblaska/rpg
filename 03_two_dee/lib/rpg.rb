@@ -13,12 +13,12 @@ class RPG
       :materials => Gosu::Image.load_tiles(window, "assets/materials.png", 16, 16, true)
     }
 
-    @world = RPG::World.new(self)
+    @world = RPG::World.new
     @player = RPG::PC.new(self)
   end
 
   def draw
-    world.draw
+    world.draw(window)
     player.draw
   end
 

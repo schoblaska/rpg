@@ -3,8 +3,8 @@ class RPG::PC
 
   def initialize(rpg)
     @rpg = rpg
-    @x = rpg.world.cols / 2
-    @y = rpg.world.rows / 2
+    @x = RPG::World::COLS / 2
+    @y = RPG::World::ROWS / 2
     @moved = Time.now
   end
 
