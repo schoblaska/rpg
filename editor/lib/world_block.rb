@@ -9,6 +9,8 @@ class RPG::WorldBlock
     case material
     when :grass
       @tile = world.rpg.tiles[:materials][rand(20)]
+    when :water
+      @tile = world.rpg.tiles[:materials][40 + rand(3)]
     end
   end
 

@@ -7,7 +7,7 @@ class RPG::World
 
     (0..cols).each do |x|
       (0..rows).each do |y|
-        blocks[x][y] = RPG::WorldBlock.new(self, x, y, 1, :grass)
+        blocks[x][y] = [RPG::WorldBlock.new(self, x, y, 1, [:grass, :grass, :grass, :water].sample)]
       end
     end
   end
@@ -23,7 +23,7 @@ class RPG::World
   def draw
     (rpg.window.left..rpg.window.right).each_with_index do |x, xi|
       (rpg.window.top..rpg.window.bottom).each_with_index do |y, yi|
-        blocks[x][y].draw(xi * 16, yi * 16, 1)
+        blocks[x][y].last.draw(xi * 16, yi * 16, 1)
       end
     end
   end
