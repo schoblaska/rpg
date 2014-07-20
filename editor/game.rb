@@ -13,7 +13,7 @@ class GameWindow < Gosu::Window
 
   def draw
     rpg.draw
-    cursor.draw(mouse_x, mouse_y, 100)
+    cursor.draw(mouse_x, mouse_y, 100, 1, 1, 0xffffff00)
   end
 
   def update
