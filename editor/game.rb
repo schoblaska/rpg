@@ -11,15 +11,31 @@ class GameWindow < Gosu::Window
   end
 
   def draw
-    @rpg.draw
+    rpg.draw
   end
 
   def update
-    @rpg.update
+    rpg.update
   end
 
   def button_down(id)
     close if id == Gosu::KbEscape
+  end
+
+  def top
+    rpg.player.y - rpg.window.height / 16 / 2
+  end
+
+  def bottom
+    rpg.player.y + rpg.window.height / 16 / 2
+  end
+
+  def left
+    rpg.player.x - rpg.window.width / 16 / 2
+  end
+
+  def right
+    rpg.player.x + rpg.window.width / 16 / 2
   end
 end
 

@@ -5,17 +5,25 @@ class RPG::World
     @rpg = rpg
     @blocks = []
 
-    rpg.cols.times do
+    cols.times do
       col = []
-      rpg.rows.times { col << rand(256) }
+      rows.times { col << rand(256) }
       @blocks << col
     end
   end
 
+  def cols
+    100
+  end
+
+  def rows
+    100
+  end
+
   def draw
-    (0..(rpg.cols - 1)).each_with_index do |x|
-      (0..(rpg.rows - 1)).each_with_index do |y|
-        rpg.tiles[blocks[x][y]].draw(x * 16, y * 16, 1)
+    (rpg.window.left..rpg.window.right).each_with_index do |x, xi|
+      (rpg.window.top..rpg.window.bottom).each_with_index do |y, yi|
+        rpg.tiles[blocks[x][y]].draw(xi * 16, yi * 16, 1)
       end
     end
   end

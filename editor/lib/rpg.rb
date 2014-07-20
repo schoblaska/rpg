@@ -12,21 +12,13 @@ class RPG
     @player = RPG::PC.new(self)
   end
 
-  def rows
-    window.height / 16
-  end
-
-  def cols
-    window.width / 16
-  end
-
   def draw
-    @world.draw
-    @player.draw
+    world.draw
+    player.draw
   end
 
   def update
-    @player.update
+    player.update
   end
 end
 

@@ -3,13 +3,15 @@ class RPG::PC
 
   def initialize(rpg)
     @rpg = rpg
-    @x = rpg.cols / 2
-    @y = rpg.rows / 2
+    @x = rpg.world.cols / 2
+    @y = rpg.world.rows / 2
     @moved = Time.now
   end
 
   def draw
-    @rpg.tiles[14].draw(@x * 16, @y * 16, 2, 1, 1, 0xffff0000)
+    draw_x = x - rpg.window.left
+    draw_y = y - rpg.window.top
+    rpg.tiles[14].draw(draw_x * 16, draw_y * 16, 2, 1, 1, 0xffff0000)
   end
 
   def update
