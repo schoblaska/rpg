@@ -7,13 +7,13 @@ class RPG::World
 
     (0..cols).each do |x|
       (0..rows).each do |y|
-        blocks[x][y] = RPG::WorldBlock.new(self, x, y, [:grass, :grass, :grass, :water, :mud].sample)
+        blocks[x][y] = RPG::WorldBlock.new([:grass, :grass, :grass, :water, :mud].sample)
       end
     end
   end
 
   def set_block(x, y, material)
-    blocks[x][y] = RPG::WorldBlock.new(self, x, y, material)
+    blocks[x][y] = RPG::WorldBlock.new(material)
   end
 
   def cols

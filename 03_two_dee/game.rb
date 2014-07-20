@@ -64,4 +64,11 @@ class GameWindow < Gosu::Window
   end
 end
 
-GameWindow.new.show
+window = GameWindow.new
+
+TILES = {
+  :misc => Gosu::Image.load_tiles(window, "assets/misc.png", 16, 16, true),
+  :materials => Gosu::Image.load_tiles(window, "assets/materials.png", 16, 16, true)
+}
+
+window.show

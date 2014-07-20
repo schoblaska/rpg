@@ -1,18 +1,17 @@
 class RPG::WorldBlock
-  attr_accessor :x, :y, :material, :world, :tile
-
-  def initialize(world, x, y, material)
-    @x, @y = x, y
+  def initialize(material)
     @material = material
-    @world = world
+    @seed = rand(99)
+  end
 
-    case material
+  def tile
+    case @material
     when :grass
-      @tile = world.rpg.tiles[:materials][rand(20)]
+      TILES[:materials][@seed % 20]
     when :water
-      @tile = world.rpg.tiles[:materials][40 + rand(3)]
+      TILES[:materials][40 + @seed % 3]
     when :mud
-      @tile = world.rpg.tiles[:materials][100 + rand(6)]
+      TILES[:materials][100 + @seed % 6]
     end
   end
 
