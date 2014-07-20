@@ -11,6 +11,8 @@ class RPG::WorldBlock
       @tile = world.rpg.tiles[:materials][rand(20)]
     when :water
       @tile = world.rpg.tiles[:materials][40 + rand(3)]
+    when :mud
+      @tile = world.rpg.tiles[:materials][100 + rand(6)]
     end
   end
 
