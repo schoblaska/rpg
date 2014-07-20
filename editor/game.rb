@@ -22,6 +22,16 @@ class GameWindow < Gosu::Window
 
   def button_down(id)
     close if id == Gosu::KbEscape
+    rpg.world.add_block(mouse_tile_x, mouse_tile_y, :water) if id == Gosu::KbW
+    rpg.world.add_block(mouse_tile_x, mouse_tile_y, :grass) if id == Gosu::KbG
+  end
+
+  def mouse_tile_x
+    ((left * 16 + mouse_x) / 16).to_i
+  end
+
+  def mouse_tile_y
+    ((top * 16 + mouse_y) / 16).to_i
   end
 
   def top

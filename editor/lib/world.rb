@@ -12,6 +12,10 @@ class RPG::World
     end
   end
 
+  def add_block(x, y, material)
+    blocks[x][y] << RPG::WorldBlock.new(self, x, y, 1, material)
+  end
+
   def cols
     100
   end
