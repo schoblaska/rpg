@@ -11,7 +11,11 @@ class RPG::PC
   def draw
     draw_x = x - rpg.window.left
     draw_y = y - rpg.window.top
-    rpg.tiles[:misc][157].draw(draw_x * 16, draw_y * 16, 2, 1, 1, 0xffff0000)
+    rpg.tiles[:misc][157].draw(draw_x * 16, draw_y * 16, 3, 1, 1, 0xffff0000)
+  end
+
+  def z
+    rpg.world.blocks[x][y].last.z + 1
   end
 
   def update
