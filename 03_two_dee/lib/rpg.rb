@@ -3,27 +3,20 @@ require "bundler/setup"
 Bundler.require
 
 class RPG
-  attr_accessor :window, :tiles, :world, :player
+  attr_accessor :world, :player
 
-  def initialize(window)
-    @window = window
-
-    @tiles = {
-      :misc => Gosu::Image.load_tiles(window, "assets/misc.png", 16, 16, true),
-      :materials => Gosu::Image.load_tiles(window, "assets/materials.png", 16, 16, true)
-    }
-
+  def initialize
     @world = RPG::World.new
     @player = RPG::PC.new
   end
 
-  def draw
-    world.draw(window)
-    player.draw(window)
+  def draw(window)
+    @world.draw(window)
+    @player.draw(window)
   end
 
-  def update
-    player.update(window)
+  def update(window)
+    @player.update(window)
   end
 end
 
