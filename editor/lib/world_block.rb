@@ -16,7 +16,7 @@ class RPG::WorldBlock
     end
   end
 
-  def draw(draw_x, draw_y, draw_z)
-    tile.draw(draw_x, draw_y, draw_z)
+  def draw(draw_x, draw_y)
+    tile.draw(draw_x, draw_y, 1)
   end
 end

@@ -13,7 +13,8 @@ class RPG::World
   end
 
   def add_block(x, y, material)
-    blocks[x][y] << RPG::WorldBlock.new(self, x, y, 1, material)
+    z = blocks[x][y].last.z + 1
+    blocks[x][y] << RPG::WorldBlock.new(self, x, y, z, material)
   end
 
   def remove_block(x, y)
@@ -31,7 +32,7 @@ class RPG::World
   def draw
     (rpg.window.left..rpg.window.right).each_with_index do |x, xi|
       (rpg.window.top..rpg.window.bottom).each_with_index do |y, yi|
-        blocks[x][y].last.draw(xi * 16, yi * 16, 1)
+        blocks[x][y].last.draw(xi * 16, yi * 16)
       end
     end
   end
