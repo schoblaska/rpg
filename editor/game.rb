@@ -8,7 +8,7 @@ class GameWindow < Gosu::Window
     self.caption = "Editor"
 
     @rpg = RPG.new(self)
-    @cursor = @rpg.tiles[92]
+    @cursor = @rpg.tiles[:misc][92]
   end
 
   def draw
