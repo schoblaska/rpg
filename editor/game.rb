@@ -1,17 +1,19 @@
 require "./lib/rpg"
 
 class GameWindow < Gosu::Window
-  attr_accessor :rpg
+  attr_accessor :rpg, :cursor
 
   def initialize
     super(16 * 64, 16 * 36, false)
     self.caption = "Editor"
 
     @rpg = RPG.new(self)
+    @cursor = @rpg.tiles[92]
   end
 
   def draw
     rpg.draw
+    cursor.draw(mouse_x, mouse_y, 100)
   end
 
   def update
