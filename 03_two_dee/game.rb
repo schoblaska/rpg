@@ -16,6 +16,10 @@ class GameWindow < Gosu::Window
 
   def update
     @rpg.update(self)
+
+    if button_down?(Gosu::MsLeft)
+      @rpg.world.set_block(@cursor.mouse_tile_x(self), @cursor.mouse_tile_y(self), @cursor.material)
+    end
   end
 
   def button_down(id)
@@ -28,8 +32,6 @@ class GameWindow < Gosu::Window
       @cursor.material = :grass
     when Gosu::KbM
       @cursor.material = :mud
-    when Gosu::MsLeft
-      @rpg.world.set_block(@cursor.mouse_tile_x(self), @cursor.mouse_tile_y(self), @cursor.material)
     end
   end
 
