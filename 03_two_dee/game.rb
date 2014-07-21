@@ -19,10 +19,18 @@ class GameWindow < Gosu::Window
   end
 
   def button_down(id)
-    close if id == Gosu::KbEscape
-    @rpg.world.set_block(@cursor.mouse_tile_x(self), @cursor.mouse_tile_y(self), :water) if id == Gosu::KbW
-    @rpg.world.set_block(@cursor.mouse_tile_x(self), @cursor.mouse_tile_y(self), :grass) if id == Gosu::KbG
-    @rpg.world.set_block(@cursor.mouse_tile_x(self), @cursor.mouse_tile_y(self), :mud) if id == Gosu::KbM
+    case id
+    when Gosu::KbEscape
+      close
+    when Gosu::KbW
+      @cursor.material = :water
+    when Gosu::KbG
+      @cursor.material = :grass
+    when Gosu::KbM
+      @cursor.material = :mud
+    when Gosu::MsLeft
+      @rpg.world.set_block(@cursor.mouse_tile_x(self), @cursor.mouse_tile_y(self), @cursor.material)
+    end
   end
 
   def top
