@@ -24,5 +24,6 @@ require "./lib/core_ext/numeric"
 
 require "./lib/cursor"
 require "./lib/pc"
+require "./lib/viewport"
 require "./lib/world"
 require "./lib/world_block"

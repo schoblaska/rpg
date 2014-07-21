@@ -17,9 +17,9 @@ class RPG::World
   end
 
   def draw(window)
-    (window.left..window.right).each_with_index do |x, xi|
-      (window.top..window.bottom).each_with_index do |y, yi|
-        @blocks[x][y].draw(xi * 16, yi * 16)
+    (window.worldview_left..window.worldview_right).each_with_index do |x, xi|
+      (window.worldview_top..window.worldview_bottom).each_with_index do |y, yi|
+        @blocks[x][y].draw(xi * 16 + window.worldview.x, yi * 16 + window.worldview.y)
       end
     end
   end

@@ -1,12 +1,16 @@
 require "./lib/rpg"
 
 class GameWindow < Gosu::Window
+  attr_accessor :worldview
 
   def initialize
-    super(16 * 64, 16 * 36, false)
+    super(16 * 75, 16 * 42, false)
+
     self.caption = "Editor"
+
     @rpg = RPG.new
     @cursor = RPG::Cursor.new
+    @worldview = RPG::Viewport.new(16 * 10, 0, 16 * 65, 16 * 35)
   end
 
   def draw
@@ -18,7 +22,7 @@ class GameWindow < Gosu::Window
     @rpg.update(self)
 
     if button_down?(Gosu::MsLeft)
-      @rpg.world.set_block(@cursor.mouse_tile_x(self), @cursor.mouse_tile_y(self), @cursor.material)
+      @rpg.world.set_block(@cursor.world_x(self), @cursor.world_y(self), @cursor.material)
     end
   end
 
@@ -35,33 +39,10 @@ class GameWindow < Gosu::Window
     end
   end
 
-  def top
-    min_top = 0
-    max_top = RPG::World::ROWS - height / 16
-
-    (@rpg.player.y - height / 16 / 2).restrict(min_top, max_top)
-  end
-
-  def bottom
-    min_bottom = height / 16
-    max_bottom = RPG::World::ROWS - 1
-
-    (@rpg.player.y + height / 16 / 2).restrict(min_bottom, max_bottom)
-  end
-
-  def left
-    min_left = 0
-    max_left = RPG::World::COLS - width / 16
-
-    (@rpg.player.x - width / 16 / 2).restrict(min_left, max_left)
-  end
-
-  def right
-    min_right = width / 16
-    max_right = RPG::World::COLS - 1
-
-    (@rpg.player.x + width / 16 / 2).restrict(min_right, max_right)
-  end
+  def worldview_top;    worldview.top(@rpg.player);    end
+  def worldview_right;  worldview.right(@rpg.player);  end
+  def worldview_bottom; worldview.bottom(@rpg.player); end
+  def worldview_left;   worldview.left(@rpg.player);   end
 end
 
 window = GameWindow.new
