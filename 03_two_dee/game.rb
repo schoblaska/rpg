@@ -6,15 +6,12 @@ class GameWindow < Gosu::Window
     super(16 * 64, 16 * 36, false)
     self.caption = "Editor"
     @rpg = RPG.new
-  end
-
-  def cursor
-    TILES[:misc][92]
+    @cursor = RPG::Cursor.new
   end
 
   def draw
     @rpg.draw(self)
-    cursor.draw(mouse_x, mouse_y, 100, 1, 1, 0xffffff00)
+    @cursor.draw(self)
   end
 
   def update
@@ -23,17 +20,9 @@ class GameWindow < Gosu::Window
 
   def button_down(id)
     close if id == Gosu::KbEscape
-    @rpg.world.set_block(mouse_tile_x, mouse_tile_y, :water) if id == Gosu::KbW
-    @rpg.world.set_block(mouse_tile_x, mouse_tile_y, :grass) if id == Gosu::KbG
-    @rpg.world.set_block(mouse_tile_x, mouse_tile_y, :mud) if id == Gosu::KbM
-  end
-
-  def mouse_tile_x
-    ((left * 16 + mouse_x) / 16).to_i
-  end
-
-  def mouse_tile_y
-    ((top * 16 + mouse_y) / 16).to_i
+    @rpg.world.set_block(@cursor.mouse_tile_x(self), @cursor.mouse_tile_y(self), :water) if id == Gosu::KbW
+    @rpg.world.set_block(@cursor.mouse_tile_x(self), @cursor.mouse_tile_y(self), :grass) if id == Gosu::KbG
+    @rpg.world.set_block(@cursor.mouse_tile_x(self), @cursor.mouse_tile_y(self), :mud) if id == Gosu::KbM
   end
 
   def top
